@@ -71,10 +71,10 @@ function App() {
     <div className='flex flex-col items-center p-4'>
       <div className='flex gap-6 bg-amber-100 w-full items-center justify-center p-2'>
 
-        <div className='text-4xl font-semibold text-blue-700'>REFMAILER</div>
+        <div className='text-3xl sm:text-4xl font-semibold text-blue-700'>REFMAILER</div>
         <div className='flex gap-1 justify-end'>
           <span>by</span>
-          <span className='text-6xl text-green-600'>Janisar</span>
+          <span className='text-5xl sm:text-6xl text-green-600'>Janisar</span>
         </div>
       </div>
 
