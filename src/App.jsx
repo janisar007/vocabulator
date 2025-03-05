@@ -68,10 +68,22 @@ function App() {
   };
 
   return (
+    <div className='flex flex-col items-center p-4'>
+      <div className='flex gap-6 bg-amber-100 w-full items-center justify-center p-2'>
+
+        <div className='text-4xl font-semibold text-blue-700'>REFMAILER</div>
+        <div className='flex gap-1 justify-end'>
+          <span>by</span>
+          <span className='text-6xl text-green-600'>Janisar</span>
+        </div>
+      </div>
+
 
     <div className='flex items-center'>
 
-      <div className='flex flex-col gap-8'>
+
+      <div className='flex flex-col gap-8 '>
+        
 
         <div className='text-4xl text-red-600'>
           {mailBorder && yourMailMsg}
@@ -151,6 +163,7 @@ function App() {
         )}
       </div>
 
+    </div>
     </div>
   );
 }
