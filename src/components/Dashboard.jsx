@@ -406,7 +406,7 @@ const Dashboard = () => {
           </div>
 
           {/* Quick Add Words */}
-          <div className="bg-white p-4 rounded-lg shadow mb-6">
+          {/* <div className="bg-white p-4 rounded-lg shadow mb-6">
             <h3 className="text-lg font-semibold mb-3">Quick Add Common SSC Words</h3>
             <div className="flex flex-wrap gap-2">
               {['Abate', 'Accord', 'Benevolent', 'Candid', 'Diligent', 'Eloquent', 'Frugal', 'Gregarious'].map((word) => (
@@ -419,7 +419,7 @@ const Dashboard = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Words Table */}
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
