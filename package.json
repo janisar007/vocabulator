@@ -1,5 +1,5 @@
 {
-  "name": "email-client-new",
+  "name": "vocabulator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,7 +14,9 @@
     "axios": "^1.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-spinners": "^0.15.0"
+    "react-router-dom": "^6.15.0",
+    "react-spinners": "^0.15.0",
+    "lucide-react": "^0.288.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
