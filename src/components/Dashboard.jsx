@@ -136,13 +136,20 @@ const Dashboard = () => {
     }
   };
 
+  const [geminiLoading, setGeminiLoading] = useState(false);
+  const [geminiWordId, setGeminiWordId] = useState("");
+
   const handleGeminiFetch = async (wordId) => {
+    setGeminiLoading(true)
+    setGeminiWordId(wordId)
     try {
       await axios.post(import.meta.env.VITE_API_URL + `/api/words/${wordId}/gemini`);
       fetchWords();
       showMessage('Gemini data fetched successfully!', 'success');
     } catch (error) {
       console.error('Error fetching Gemini data:', error);
+    } finally {
+        setGeminiLoading(false)
     }
   };
 
@@ -451,6 +458,8 @@ const Dashboard = () => {
                       key={word._id} 
                       word={word} 
                       onGeminiFetch={handleGeminiFetch}
+                      geminiWordId={geminiWordId}
+                      geminiLoading={geminiLoading}
                       onAddToFlashcard={addToFlashcard}
                       onRemoveFromFlashcard={removeFromFlashcard}
                       onEdit={startEditing}
@@ -535,6 +544,8 @@ const Dashboard = () => {
 
 const WordRow = ({ 
   word, 
+  geminiLoading, 
+  geminiWordId, 
   onGeminiFetch, 
   onAddToFlashcard, 
   onRemoveFromFlashcard, 
@@ -723,8 +734,13 @@ const WordRow = ({
             <button
               onClick={() => onGeminiFetch(word._id)}
               className="bg-purple-600 text-white px-3 py-1 rounded text-xs hover:bg-purple-700"
+              disabled={geminiLoading}
             >
-              Get Gemini
+
+                {
+                    geminiWordId == word._id ? "Loading..." : "AI meaning"
+                }
+              
             </button>
           )}
           <button 
