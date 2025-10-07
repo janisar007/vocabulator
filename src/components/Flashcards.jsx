@@ -61,6 +61,22 @@ const Flashcards = () => {
     setLoading(false);
   };
 
+  const clearFilter = async () => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams();
+      if (selectedDate) params.append("date", selectedDate);
+
+      const response = await axios.get(
+        import.meta.env.VITE_API_URL + `/api/flashcards`
+      );
+      setFlashcards(response.data.data.flashcards);
+    } catch (error) {
+      console.error("Error fetching flashcards:", error);
+    }
+    setLoading(false);
+  };
+
   const markAsCompleted = async (flashcardId) => {
     try {
       await axios.patch(
@@ -141,8 +157,17 @@ const Flashcards = () => {
 
   const currentWord = todayFlashcard?.words[currentCardIndex]?.word;
   console.log(todayFlashcard);
-  console.log(currentCardIndex);
-  console.log(currentWord);
+  console.log(flashcards);
+//   console.log(currentCardIndex);
+//   console.log(currentWord);
+
+
+const setInTodaysFlashCard = (idx) => {
+
+    setTodayFlashcard(flashcards[idx])
+    setCurrentCardIndex(0);
+
+}
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -304,10 +329,16 @@ const Flashcards = () => {
                   />
                   <button
                     onClick={fetchFlashcards}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                    className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-md hover:bg-blue-700"
                   >
                     Filter
                   </button>
+                 {selectedDate && selectedDate.length > 0 && <button
+                    onClick={() => { setSelectedDate(""); clearFilter()}}
+                    className=" text-black cursor-pointer border border-gray-600 px-4 py-2 rounded-md"
+                  >
+                    Clear Filter
+                  </button>}
                 </div>
               </div>
             </div>
@@ -317,16 +348,17 @@ const Flashcards = () => {
                 <div className="text-center py-8">Loading...</div>
               ) : flashcards.length > 0 ? (
                 <div className="space-y-4">
-                  {flashcards.map((flashcard) => (
+                  {flashcards.map((flashcard, idx) => (
                     <div
+                    onClick={() => setInTodaysFlashCard(idx)}
                       key={flashcard._id}
-                      className={`p-4 border rounded-lg ${
+                      className={`cursor-pointer p-4 border rounded-lg ${
                         flashcard.completed
-                          ? "border-green-200 bg-green-50"
-                          : "border-gray-200 bg-white"
-                      }`}
+                          ? "border-green-200 "
+                          : "border-gray-200 "
+                      }  ${ flashcard._id == todayFlashcard._id && "bg-fuchsia-50" }`}
                     >
-                      <div className="flex justify-between items-start mb-3">
+                      <div className="flex justify-between items-start mb-3 ">
                         <div>
                           <div className="flex items-center space-x-2">
                             <span className="font-semibold">

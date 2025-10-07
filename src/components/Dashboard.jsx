@@ -369,11 +369,11 @@ const Dashboard = () => {
               {error}
             </div>
           )}
-          {success && (
+          {/* {success && (
             <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
               {success}
             </div>
-          )}
+          )} */}
 
           <div className="flex space-x-4 mb-6">
             <div className="flex-1">
@@ -423,7 +423,7 @@ const Dashboard = () => {
 
           {/* Words Table */}
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            {loading ? (
+            {false ? (
               <div className="flex justify-center items-center p-8">
                 <Loader className="animate-spin" size={32} />
               </div>
