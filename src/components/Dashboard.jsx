@@ -348,20 +348,20 @@ const Dashboard = () => {
               <h1 className="text-2xl font-bold text-gray-900">VOCABULATOR</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-700">Welcome, {user?.name}</span>
+              <span className="text-gray-700">Welcome, <span className='font-semibold'>{user?.name}</span></span>
               <Link
                 to="/flashcards"
-                className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 flex items-center space-x-2"
+                className="border-green-600 border bg-green-100 hover:bg-green-200 text-green-600 px-4 py-2 rounded-md  flex items-center space-x-2"
               >
-                <Bookmark size={16} />
+                <Bookmark size={16} color="green" />
                 <span>Flashcards</span>
               </Link>
               <button
                 onClick={logout}
-                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 flex items-center space-x-2"
+                className=" text-red-500 font-semibold px-4 py-2 rounded-md cursor-pointer hover:opacity-80  flex items-center space-x-2"
               >
                 <LogOut size={16} />
-                <span>Logout</span>
+                <span>Logo</span>
               </button>
             </div>
           </div>
@@ -388,8 +388,8 @@ const Dashboard = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                 <input
                   type="text"
-                  placeholder="Search words... (e.g., acc for accord, account, etc.)"
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Search words..."
+                  className="pl-10 pr-4 py-2 border border-gray-300 bg-white focus:shadow-md rounded-md w-full focus:outline-none"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -404,7 +404,7 @@ const Dashboard = () => {
               />
               <button
                 onClick={() => setShowAddWord(true)}
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center space-x-2"
+                className="bg-blue-200 border border-blue-600 text-blue-700 font-semibold px-4 py-2 rounded-md hover:bg-blue-300 cursor-pointer flex items-center space-x-2"
               >
                 <Plus size={16} />
                 <span>Add Word</span>
@@ -645,7 +645,7 @@ const WordRow = ({
             </div>
           </div>
           {isHovered && (
-            <div className="hover-tooltip w-64 p-3 bg-gray-900 text-white text-sm rounded-lg shadow-lg">
+            <div className="hover-tooltip w-64 p-3 bg-gray-200 text-gray-800 text-sm rounded-lg shadow-lg">
               <div className="font-semibold mb-1">Your Understanding:</div>
               <div>{word.userMeaning || 'No meaning added yet'}</div>
             </div>
@@ -729,11 +729,11 @@ const WordRow = ({
 
       {/* Column 4: Actions */}
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-        <div className="flex space-x-2">
+        <div className="flex flex-col items-center justify-center gap-4">
           {!word.geminiData?.fetchedAt && (
             <button
               onClick={() => onGeminiFetch(word._id)}
-              className="bg-purple-600 text-white px-3 py-1 rounded text-xs hover:bg-purple-700"
+              className="bg-purple-200 border border-purple-500 text-purple-700 px-3 py-1 rounded text-xs hover:bg-purple-100 cursor-pointer"
               disabled={geminiLoading}
             >
 
@@ -743,18 +743,22 @@ const WordRow = ({
               
             </button>
           )}
+
+          <div className='flex flex-row items-center gap-2'>
           <button 
             onClick={() => onEdit(word)}
-            className="bg-blue-600 text-white px-3 py-1 rounded text-xs hover:bg-blue-700"
+            className="text-blue-700  px-3 py-1 rounded text-xs hover:bg-blue-200 bg-blue-100 cursor-pointer border-blue-600 border"
           >
             <Edit3 size={12} />
           </button>
           <button 
             onClick={() => onDelete(word._id)}
-            className="bg-red-600 text-white px-3 py-1 rounded text-xs hover:bg-red-700"
+            className="text-red-700  px-3 py-1 rounded text-xs hover:bg-red-200 bg-red-100 cursor-pointer border-red-600 border"
           >
             <Trash2 size={12} />
           </button>
+
+          </div>
         </div>
       </td>
     </tr>

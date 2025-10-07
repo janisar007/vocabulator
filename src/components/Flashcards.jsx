@@ -186,17 +186,17 @@ const setInTodaysFlashCard = (idx) => {
               <h1 className="text-2xl font-bold text-gray-900">Flashcards</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-700">Welcome, {user?.name}</span>
+              <span className="text-gray-700">Welcome, <span className='font-semibold'>{user?.name}</span></span>
               <button
                 onClick={() => setShowCreateFlashcard(true)}
-                className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center space-x-2"
+                className="text-blue-600 border-blue-600 border px-4 py-2 rounded-md cursor-pointer hover:bg-blue-50 flex items-center space-x-2"
               >
                 <Plus size={16} />
                 <span>New Flashcard</span>
               </button>
               <button
                 onClick={logout}
-                className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+                className="text-red-600 font-semibold px-4 py-2 rounded-md hover:opacity-80 cursor-pointer"
               >
                 Logout
               </button>
@@ -271,7 +271,7 @@ const setInTodaysFlashCard = (idx) => {
                   <div className="flex justify-between items-center">
                     <button
                       onClick={prevCard}
-                      className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+                      className="bg-gray-300 text-gray-700 border cursor-pointer border-gray-600 px-4 py-2 rounded hover:bg-gray-200"
                     >
                       Previous
                     </button>
@@ -279,7 +279,7 @@ const setInTodaysFlashCard = (idx) => {
                     {!todayFlashcard.completed && (
                       <button
                         onClick={() => markAsCompleted(todayFlashcard._id)}
-                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 flex items-center space-x-2"
+                        className="text-green-600 border-green-600 border px-4 py-2 rounded hover:bg-opacity-80 hover:bg-green-50 cursor-pointer flex items-center space-x-2"
                       >
                         <CheckCircle size={16} />
                         <span>Mark as Completed</span>
@@ -288,7 +288,7 @@ const setInTodaysFlashCard = (idx) => {
 
                     <button
                       onClick={nextCard}
-                      className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+                      className="bg-gray-300 text-gray-700 border cursor-pointer border-gray-600 px-4 py-2 rounded hover:bg-gray-200"
                     >
                       Next
                     </button>
@@ -329,13 +329,13 @@ const setInTodaysFlashCard = (idx) => {
                   />
                   <button
                     onClick={fetchFlashcards}
-                    className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-md hover:bg-blue-700"
+                    className="bg-blue-200 border border-blue-600 cursor-pointer text-medium text-blue-700 px-4 py-2 rounded-md hover:bg-blue-300"
                   >
                     Filter
                   </button>
                  {selectedDate && selectedDate.length > 0 && <button
                     onClick={() => { setSelectedDate(""); clearFilter()}}
-                    className=" text-black cursor-pointer border border-gray-600 px-4 py-2 rounded-md"
+                    className=" text-black cursor-pointer hover:bg-gray-100 border border-gray-600 px-4 py-2 rounded-md"
                   >
                     Clear Filter
                   </button>}
@@ -351,12 +351,12 @@ const setInTodaysFlashCard = (idx) => {
                   {flashcards.map((flashcard, idx) => (
                     <div
                     onClick={() => setInTodaysFlashCard(idx)}
-                      key={flashcard._id}
+                      key={flashcard?._id}
                       className={`cursor-pointer p-4 border rounded-lg ${
                         flashcard.completed
                           ? "border-green-200 "
                           : "border-gray-200 "
-                      }  ${ flashcard._id == todayFlashcard._id && "bg-fuchsia-50" }`}
+                      }  ${ flashcard?._id == todayFlashcard?._id && "bg-fuchsia-50" }`}
                     >
                       <div className="flex justify-between items-start mb-3 ">
                         <div>
@@ -381,16 +381,16 @@ const setInTodaysFlashCard = (idx) => {
                           {!flashcard.completed && (
                             <button
                               onClick={() => markAsCompleted(flashcard._id)}
-                              className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700"
+                              className="border-green-600 border bg-green-100 text-green-600 px-3 py-1 rounded text-sm hover:bg-green-200 cursor-pointer"
                             >
                               Mark Complete
                             </button>
                           )}
                           <button
                             onClick={() => deleteFlashcard(flashcard._id)}
-                            className="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700"
+                            className="text-red-600 px-3 py-1 rounded cursor-pointer text-md hover:text-red-400"
                           >
-                            <Trash2 size={14} />
+                            <Trash2 size={17} />
                           </button>
                         </div>
                       </div>
@@ -420,7 +420,7 @@ const setInTodaysFlashCard = (idx) => {
                                     item.word?._id
                                   )
                                 }
-                                className="text-red-500 hover:text-red-700 ml-2"
+                                className="text-gray-500 hover:text-gray-700 ml-2"
                                 title="Remove from flashcard"
                               >
                                 <X size={16} />
